@@ -40,11 +40,13 @@ DB_DATABASE=db_name
 DB_USERNAME=db_username
 DB_PASSWORD=
 ...
+FAKER_LOCALE=id_ID
 ```
 
 - Run this command:
 ```sh
 $ php artisan key:generate
+$ php artisan migrate:fresh --seed
 ```
 
 ## Running the app
