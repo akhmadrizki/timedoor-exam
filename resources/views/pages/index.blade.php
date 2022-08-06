@@ -40,14 +40,16 @@
     </tr>
   </thead>
   <tbody>
+    @foreach ($books as $book)
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
+      <th scope="row">{{ $loop->iteration }}</th>
+      <td>{{ $book->name }}</td>
+      <td>{{ $book->category->name }}</td>
+      <td>{{ $book->author->name }}</td>
+      <td>{{ round($book->ratings->avg('value'), 2) }}</td>
+      <td>{{ count($book->ratings) }}</td>
     </tr>
+    @endforeach
   </tbody>
 </table>
 
