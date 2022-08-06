@@ -2,28 +2,36 @@
 
 @section('content')
 
-<form action="#">
+<div class="col-12">
+  @if (session('message'))
+  <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
+    {{ session('message') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+</div>
+
+<form action="{{ route('landing') }}" method="GET">
   <div class="mb-3 row">
     <label for="list" class="col-sm-2 col-form-label">List Shown</label>
     <div class="col-sm-5">
-      <select class="form-select" id="list" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select class="form-select" name="shown" id="list" aria-label="Default select example">
+        <option selected disabled>Select Here</option>
+        @for ($shown = 10; $shown <= 100; $shown=$shown+10) <option value={{$shown}}>{{ $shown }}</option>
+          @endfor
       </select>
     </div>
   </div>
   <div class="mb-3 row">
     <label for="search" class="col-sm-2 col-form-label">Search</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" id="search">
+      <input type="search" value="{{ request('search') }}" class="form-control" name="search" id="search">
     </div>
   </div>
   <div class="mb-3 row">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-5">
-      <button type="button" class="btn btn-primary">Submit</button>
+      <button type="sumbit" class="btn btn-primary">Submit</button>
     </div>
   </div>
 </form>
@@ -43,9 +51,9 @@
     @foreach ($books as $book)
     <tr>
       <th scope="row">{{ $loop->iteration }}</th>
-      <td>{{ $book->name }}</td>
-      <td>{{ $book->category->name }}</td>
-      <td>{{ $book->author->name }}</td>
+      <td>{{ $book->book_name }}</td>
+      <td>{{ $book->category->category_name }}</td>
+      <td>{{ $book->author->author_name }}</td>
       <td>{{ round($book->ratings->avg('value'), 2) }}</td>
       <td>{{ count($book->ratings) }}</td>
     </tr>

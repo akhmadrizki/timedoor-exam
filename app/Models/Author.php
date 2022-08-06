@@ -11,11 +11,16 @@ class Author extends Model
 
     protected $table = 'authors';
     protected $fillable = [
-        'name',
+        'author_name',
     ];
 
     public function books()
     {
         return $this->hasMany(Book::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
     }
 }

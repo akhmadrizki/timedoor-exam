@@ -13,10 +13,16 @@ class Rating extends Model
     protected $fillable = [
         'value',
         'book_id',
+        'author_id',
     ];
 
     public function books()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function authors()
+    {
+        return $this->belongsTo(Author::class);
     }
 }

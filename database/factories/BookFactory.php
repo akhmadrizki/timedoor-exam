@@ -19,7 +19,7 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->unique()->sentence(),
+            'book_name' => fake()->unique()->sentence(),
             'category_id' => Category::inRandomOrder()->first()->id,
             'author_id' => Author::inRandomOrder()->first()->id,
         ];

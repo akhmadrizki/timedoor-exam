@@ -14,4 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ClientController::class, 'index']);
+Route::get('/', [ClientController::class, 'index'])->name('landing');
+Route::get('/top-author', [ClientController::class, 'famous'])->name('famous.author');
+
+Route::get('/input-rating/create', [ClientController::class, 'input'])->name('input.create');
+Route::get('/input-rating/fetch/{id}', [ClientController::class, 'fetch'])->name('fetch.book');
+Route::post('/input-rating/store', [ClientController::class, 'store'])->name('input.store');
